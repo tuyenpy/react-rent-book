@@ -1,35 +1,55 @@
-import React, { Component } from 'react';
-import { Container } from 'react-bootstrap';
-import BookItem from './component/BookItem/BookItem';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import axios from 'axios';
+import './App.css';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      books: [
-        {
-          image: "https://loremflickr.com/320/240",
-          title: "Hatari!",
-          description: "Laceration with foreign body of left back wall of thorax without penetration into thoracic cavity, subsequent encounter"
-        }
-      ]
-    };
-  }
+import NavBar from './component/NavBar/NavBar';
+import Home from './component/Home/Home';
+import BookList from './component/BookList/BookList';
+const bookURL = "https://rent-book-coderx.herokuapp.com/api/book";
 
-  render() {
-    let { books } = this.state;
-    return <div className="App">
-      <Container>
-        {
-          books.map((book, index) => {
-            return <BookItem book={book} key={index} />
-          })
-        }
+const perPage = 12;
 
-      </Container>
+const App = () => {
+  const [books, setBooks] = useState([]);
+  const [page, setPage] = useState(0);
+  const [cart, setCart] = useState(0);
+
+  const onNumPage = (page) => setPage(page);
+  useEffect(() => {
+    //get all books
+    getData(bookURL)
+      .then(res => setBooks(res.data))
+      .catch(err => console.log(err));
+  }, []);
+
+  return <Router>
+    <div className="App">
+      <NavBar cart={cart} />
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route path='/book'>
+          <BookList books={books}
+            perPage={perPage}
+            page={page}
+            onNumPage={onNumPage}
+            setCart={setCart}
+            cart={cart}
+          />
+        </Route>
+      </Switch>
     </div>
-  }
+  </Router>
+}
+
+const getData = async (url) => {
+  return await axios.get(url)
 }
 
 export default App;

@@ -1,30 +1,39 @@
-import React, { Component } from 'react';
-import { Card, Button } from 'react-bootstrap';
+import React from 'react';
 import PropTypes from 'prop-types';
-class BookItem extends Component {
-    constructor(props) {
-        super();
-    }
-    render() {
-        let { book } = this.props;
-        return <div className="BookItem">
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={book.image} />
-                <Card.Body>
-                    <Card.Title>{book.title}</Card.Title>
-                    <Card.Text>{book.description}</Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-            </Card>
-        </div>
-    }
-}
+import './BookItem.css';
 
-BookItem.propTypes = {
-    book: PropTypes.shape({
-        image: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired
-    })
+const BookItem = (props) => {
+    let { image, title, description, author, price, setCart, cart } = props;
+    return <div className="BookItem">
+        <div className="BookItem-image">
+            <img src={image} alt="" />
+        </div>
+        <div className="BookItem-body">
+            <div className="title">
+                <p>{title}</p>
+            </div>
+            <div className="description">
+                <p>{description}}</p>
+            </div>
+            <div className="author">
+                <p>{author}}</p>
+            </div>
+            <div className="price">
+                <p>{price}</p>
+            </div>
+        </div>
+        <div className="BookItem-btn">
+            <button onClick={() => setCart(cart + 1)}>Add to cart</button>
+        </div>
+    </div>
 }
+// props = {image, title, description, author, price}
+BookItem.propTypes = PropTypes.shape({
+    image: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    author: PropTypes.string,
+    price: PropTypes.string,
+})
+
 export default BookItem;
