@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import './BookList.css';
-import PropTypes from 'prop-types';
 import AppContext from '../../Context/AppContext';
 
 import Filter from '../Filter/Filter';
@@ -25,6 +24,6 @@ const BookList = (props) => {
 }
 
 //props = {books: [book]}s
-BookList.propTypes = PropTypes.arrayOf(PropTypes.object);
+
 
 export default BookList;

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import './BookItem.css';
 import AppContext from '../../Context/AppContext';
 
@@ -30,12 +29,5 @@ const BookItem = (props) => {
     </div>
 }
 // props = {image, title, description, author, price}
-BookItem.propTypes = {
-    image: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-}
 
 export default BookItem;
