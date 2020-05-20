@@ -1,58 +1,52 @@
-import React, { useState } from 'react';
-import request from 'superagent';
+import React, { useState, useReducer } from 'react';
 import axios from 'axios';
-
+import onPhotoSelected from '../../action/onUploadCloudinary';
 import './Signup.css';
 
-//config cloudinary account
-import { cloudName, presetName } from '../../config/config';
+// const createURI = ""
+let initUser = {
+    name: "",
+    phone: "",
+    email: "",
+    password: "",
+}
 
-const createURI = ""
+const reducer = (user, action) => {
+    switch (action.type) {
+        case 'name': return {
+            ...user,
+            name: action.value
+        };
+        case 'phone': return {
+            ...user,
+            phone: action.value
+        };
+        case 'email': return {
+            ...user,
+            email: action.value
+        };
+        case "password": return {
+            ...user,
+            password: action.value
+        };
+        default:
+            throw new Error();
+    }
+}
 
 
 const Signup = (props) => {
     let [path, setPath] = useState();
-    let [name, setName] = useState("");
-    let [phone, setPhone] = useState("");
-    let [email, setEmail] = useState("");
-    let [password, setPassword] = useState("");
+    let [user, dispatch] = useReducer(reducer, initUser);
 
-    const onPhotoSelected = (files) => {
-        return new Promise((res, rej) => {
-            const url = `https://api.cloudinary.com/v1_1/${
-                cloudName
-                }/upload`;
-            const title = path.value;
-    
-            for (let file of files) {
-                request.post(url)
-                    .field('upload_preset', presetName)
-                    .field('file', file)
-                    .field('multiple', true)
-                    .field('tags', title ? `myphotoalbum,${title}` : 'myphotoalbum')
-                    .field('context', title ? `photo=${title}` : '')
-                    .on('progress', (process) => { })
-                    .end((error, response) => {
-                        if (error) rej(error);
-                        res(response.body.secure_url)
-                    });
-            }
-
-        })
-    }
     const onSignup = async (e) => {
         e.preventDefault();
-        let avatar = await onPhotoSelected(path.files);
-        let user = {
-            avatar,
-            name,
-            phone,
-            email,
-            password,
-        };
-        axios.post(createURI)
-          .then()
-          .catch();
+        let avatar = await onPhotoSelected(path);
+        user.avatar = avatar;
+        console.log(user);
+        // axios.post(createURI)
+        //   .then()
+        //   .catch();
     }
 
     return <div className="Signup">
@@ -61,29 +55,26 @@ const Signup = (props) => {
                 <label>Name</label>
                 <input type="text"
                     placeholder="Please fill name"
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => dispatch({type: 'name', value: e.target.value})}
                 />
             </div>
             <div className="Signup-group">
                 <label>Phone</label>
                 <input type="text"
                     placeholder="Please fill phone"
-                    onChange={(e) => setPhone(e.target.value)}
-                />
+                    onChange={(e) => dispatch({type: 'phone', value: e.target.value})}                />
             </div>
             <div className="Signup-group">
                 <label>Email</label>
                 <input type="email"
                     placeholder="Please fill email"
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                    onChange={(e) => dispatch({type: 'email', value: e.target.value})}                />
             </div>
             <div className="Signup-group">
                 <label>Password</label>
                 <input type="password"
                     placeholder="Please fill password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                    onChange={(e) => dispatch({type: 'password', value: e.target.value})}                />
             </div>
             <div className="Signup-group">
                 <label>Avatar</label>
@@ -95,8 +86,6 @@ const Signup = (props) => {
                     ref={fileInputEl =>
                         (setPath(fileInputEl))
                     }
-                // onChange={() => onPhotoSelected(path.files)
-                // }
                 />
             </div>
             <button onClick={onSignup}>Signup</button>
