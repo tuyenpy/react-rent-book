@@ -10,16 +10,25 @@ import './App.css';
 import NavBar from './component/NavBar/NavBar';
 import Home from './component/Home/Home';
 import BookList from './component/BookList/BookList';
-const bookURL = "https://rent-book-coderx.herokuapp.com/api/book";
+import AppContext from './Context/AppContext';
 
+const bookURL = "https://rent-book-coderx.herokuapp.com/api/book";
 const perPage = 12;
 
 const App = () => {
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(0);
   const [cart, setCart] = useState(0);
-
   const onNumPage = (page) => setPage(page);
+  const value = {
+    onNumPage,
+    cart,
+    setCart, 
+    books,
+    perPage,
+    page
+  }
+
   useEffect(() => {
     //get all books
     getData(bookURL)
@@ -28,23 +37,20 @@ const App = () => {
   }, []);
 
   return <Router>
-    <div className="App">
-      <NavBar cart={cart} />
-      <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route path='/book'>
-          <BookList books={books}
-            perPage={perPage}
-            page={page}
-            onNumPage={onNumPage}
-            setCart={setCart}
-            cart={cart}
-          />
-        </Route>
-      </Switch>
-    </div>
+    <AppContext.Provider value={value}>
+      <div className="App">
+        <NavBar cart={cart} />
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/book'>
+            <BookList />
+          </Route>
+        </Switch>
+      </div>
+
+    </AppContext.Provider>
   </Router>
 }
 

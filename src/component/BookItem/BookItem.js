@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './BookItem.css';
+import AppContext from '../../Context/AppContext';
 
 const BookItem = (props) => {
-    let { image, title, description, author, price, setCart, cart } = props;
+    let { image, title, description, author, price } = props;
+    let { cart, setCart } = useContext(AppContext);
     return <div className="BookItem">
         <div className="BookItem-image">
             <img src={image} alt="" />

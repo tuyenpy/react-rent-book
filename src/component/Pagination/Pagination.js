@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Pagination.css';
 import PropTypes from 'prop-types';
+import AppContext from '../../Context/AppContext';
 
 const Pagination = (props) => {
-    let { numPage, onNumPage } = props;
+    let { numPage } = props;
+    let { onNumPage } = useContext(AppContext);
 
     return <div className="Pagination">
         <button>Prev</button>

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 import cartLogo from './cart.svg';
+import AppContext from '../../Context/AppContext';
 
 const NavBar = (props) => {
-  let { cart } = props;
+  let { cart } = useContext(AppContext);
   return <div className="NavBar">
     <ul>
       <li>
