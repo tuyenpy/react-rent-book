@@ -1,5 +1,6 @@
 import React from 'react';
 import './Pagination.css';
+import PropTypes from 'prop-types';
 
 const Pagination = (props) => {
     let { numPage, onNumPage } = props;
@@ -15,4 +16,8 @@ const Pagination = (props) => {
     </div>
 }
 
+Pagination.propTypes = {
+    numPage: PropTypes.arrayOf(PropTypes.number).isRequired,
+    onNumPage: PropTypes.func,
+}
 export default Pagination;

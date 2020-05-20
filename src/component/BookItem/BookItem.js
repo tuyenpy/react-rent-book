@@ -28,12 +28,12 @@ const BookItem = (props) => {
     </div>
 }
 // props = {image, title, description, author, price}
-BookItem.propTypes = PropTypes.shape({
-    image: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    author: PropTypes.string,
-    price: PropTypes.string,
-})
+BookItem.propTypes = {
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+}
 
 export default BookItem;
