@@ -6,11 +6,14 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
+import AppContext from './Context/AppContext';
 
-import NavBar from './component/NavBar/NavBar';
+import Header from './component/Header/Header';
 import Home from './component/Home/Home';
 import BookList from './component/BookList/BookList';
-import AppContext from './Context/AppContext';
+import Transaction from './component/Transaction/Transaction';
+import Login from './component/Login/Login';
+import Signup from './component/Signup/Signup';
 
 const bookURL = "https://rent-book-coderx.herokuapp.com/api/book";
 const perPage = 12;
@@ -39,13 +42,22 @@ const App = () => {
   return <Router>
     <AppContext.Provider value={value}>
       <div className="App">
-        <NavBar cart={cart} />
+        <Header />
         <Switch>
           <Route exact path='/'>
             <Home />
           </Route>
           <Route path='/book'>
             <BookList />
+          </Route>
+          <Route path='/transaction'>
+            <Transaction />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/signup'>
+            <Signup />
           </Route>
         </Switch>
       </div>
@@ -54,6 +66,7 @@ const App = () => {
   </Router>
 }
 
+// get data
 const getData = async (url) => {
   return await axios.get(url)
 }

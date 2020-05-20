@@ -1,0 +1,10 @@
+.Filter {
+    padding: 12px 0px 8px 0px;
+    text-align: right;
+}
+
+#filter {
+    font-size: 15px;
+    width: 100px;
+    padding: 8px 0px;
+}

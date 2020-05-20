@@ -1,3 +1,7 @@
+.NavBar {
+    flex-grow: 2;
+}
+
 .NavBar ul{
     display: flex;
     justify-content: space-evenly;
@@ -5,25 +9,3 @@
     list-style-type: none;
 }
 
-.NavBar li {
-    position: relative;
-}
-
-.NavBar a {
-    text-decoration: none;
-    color: #555555;
-}
-
-.NavBar img {
-    position: relative;
-    width: 40px;
-}
-
-.NavBar span {
-    position: absolute;
-    top: 0;
-    padding: 1px 7px;
-    border-radius: 50%;
-    background-color: #ff0000;
-    color: #ffffff;
-}

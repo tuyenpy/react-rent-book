@@ -1,0 +1,11 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.Header a {
+    text-decoration: none;
+    color: #555555;
+}
