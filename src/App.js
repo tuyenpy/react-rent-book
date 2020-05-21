@@ -17,11 +17,13 @@ import Login from './component/Login/Login';
 import Signup from './component/Signup/Signup';
 
 const bookURL = "https://rent-book-coderx.herokuapp.com/api/book";
+const userURL = "https://rent-book-coderx.herokuapp.com/api/user/profile";
 const perPage = 12;
 
 const App = (props) => {
   let { cookies } = props;
   const [books, setBooks] = useState([]);
+  const [user, setUser] = useState({});
   const [page, setPage] = useState(0);
   const [cart, setCart] = useState(0);
   const onNumPage = (page) => setPage(page);
@@ -34,6 +36,7 @@ const App = (props) => {
     perPage,
     page,
     cookies,
+    user,
   }
 
   useEffect(() => {
@@ -42,6 +45,14 @@ const App = (props) => {
       .then(res => setBooks(res.data))
       .catch(err => console.log(err));
   }, []);
+
+  useEffect(() => {
+    axios.get(userURL, {
+      params: {userID: cookies.get('userID')}
+    })
+      .then(res => setUser(res.data))
+      .catch(err => console.log(err));
+  },)
 
   return <Router>
     <AppContext.Provider value={value}>

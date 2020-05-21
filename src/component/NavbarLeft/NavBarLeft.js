@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './Account.css';
+import './NavBarLeft.css';
 import cartLogo from './cart.svg';
 import AppContext from '../../Context/AppContext';
+import Account from '../Account/Account';
 
-const Account = (props) => {
+const NavBarLeft = (props) => {
     let { cart, cookies } = useContext(AppContext);
-    return <div className="Account">
+    return <div className="NavBarLeft">
         <ul>
             <li>
                 <Link to='/cart'>
@@ -24,8 +25,14 @@ const Account = (props) => {
                     </li>
                 </>
             }
+            <li>
+                {
+                    cookies.get('userID') && <Account />
+                }
+
+            </li>
         </ul>
     </div>
 }
 
-export default Account;
+export default NavBarLeft;

@@ -1,24 +1,24 @@
 
-.Account {
+.NavBarLeft {
     flex-grow: 1;
 }
-.Account img {
+.NavBarLeft img {
     position: relative;
     width: 40px;
 }
 
-.Account ul {
+.NavBarLeft ul {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     list-style-type: none;
 }
 
-.Account li {
+.NavBarLeft li {
     position: relative;
 }
 
-.Account span {
+.NavBarLeft span {
     position: absolute;
     top: 0;
     padding: 1px 7px;
