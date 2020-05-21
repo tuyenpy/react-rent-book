@@ -6,6 +6,9 @@ const NavBar = (props) => {
   return <div className="NavBar">
     <ul>
       <li>
+        <img src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/logo.png" alt="logo" />
+      </li>
+      <li>
         <Link to='/'>Home</Link>
       </li>
       <li>

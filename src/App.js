@@ -65,6 +65,9 @@ const App = (props) => {
   return <Router>
     <AppContext.Provider value={value}>
       <div className="App">
+        <div className="Banner">
+          <img src="https://cdn0.fahasa.com/media/wysiwyg/Thang-5-2020/Thang5donha_mainbanner_1263x60.jpg" alt='banner'/>
+        </div>
         <Header />
         <Switch>
           <Route exact path='/'>
