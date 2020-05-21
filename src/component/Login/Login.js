@@ -1,8 +1,9 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import './Login.css';
 import AppContext from '../../Context/AppContext';
+import close from './close.svg';
 
 const loginURL = "https://rent-book-coderx.herokuapp.com/api/user/login";
 
@@ -29,7 +30,7 @@ const reducer = (state, action) => {
 const Login = (props) => {
     let { cookies } = useContext(AppContext);
     let [state, dispatch] = useReducer(reducer, initState);
-
+    let [state1, setState1] = useState(true);
     const onLogin = (e) => {
         e.preventDefault();
         axios.post(loginURL, {
@@ -42,8 +43,12 @@ const Login = (props) => {
         {
             cookies.get('userID') && <Redirect to='/' />
         }
+        {
+            state1 ? (
         <div className="Login">
             <form>
+                <h1>Đăng nhập</h1>
+                <img src={close} alt="close" className="close" onClick={() => setState1(false)} />
                 <div className="Login-group">
                     <label>Email</label>
                     <input type="email"
@@ -61,6 +66,9 @@ const Login = (props) => {
                 <button onClick={onLogin}>Login</button>
             </form>
         </div>
+
+            ) : (<Redirect to='/' />)
+        }
     </>
 }
 

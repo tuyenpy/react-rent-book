@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
 import { withCookies } from 'react-cookie';
@@ -15,6 +16,8 @@ import BookList from './component/BookList/BookList';
 import Transaction from './component/Transaction/Transaction';
 import Login from './component/Login/Login';
 import Signup from './component/Signup/Signup';
+import Sidebar from './component/Sidebar/Sidebar';
+import SlideShow from './component/SlideShow/SlideShow';
 
 const bookURL = "https://rent-book-coderx.herokuapp.com/api/book";
 const userURL = "https://rent-book-coderx.herokuapp.com/api/user/profile";
@@ -65,13 +68,14 @@ const App = (props) => {
   return <Router>
     <AppContext.Provider value={value}>
       <div className="App">
-        <div className="Banner">
-          <img src="https://cdn0.fahasa.com/media/wysiwyg/Thang-5-2020/Thang5donha_mainbanner_1263x60.jpg" alt='banner'/>
-        </div>
         <Header />
+        <div className="Main">
+          <Sidebar />
+          <SlideShow />
+        </div>
         <Switch>
           <Route exact path='/'>
-            <Home />
+            <Redirect to='/book' />
           </Route>
           <Route path='/book'>
             <BookList />

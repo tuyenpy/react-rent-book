@@ -1,0 +1,9 @@
+.SlideShow {
+    flex-basis: 100px;
+    flex-grow: 3;
+    margin-left: 20px;
+}
+
+.SlideShow img {
+    width: 100%;
+}

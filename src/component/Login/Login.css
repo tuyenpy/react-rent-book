@@ -1,0 +1,58 @@
+.Login {
+    position: fixed;
+    top: 0;
+    left: 0;;
+    width: 100%;
+    height: 100%;
+    background-color: #55555566;
+    overflow: auto;
+}
+.Login .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    opacity: 0.8;
+}
+.Login h1 {
+    text-align: center;
+    padding: 24px;
+    text-transform: uppercase;
+}
+.Login form {
+    position: relative;
+    background-color: #ffffff;
+    width: 50%;
+    margin: 100px auto;
+    padding: 12px 60px;
+}
+
+.Login-group {
+    padding: 10px 0px;
+}
+
+.Login-group input {
+    width: 100%;
+    font-size: 14px;
+    color: #555555;
+    margin-top: 5px;
+    padding: 10px;
+    border: 0;
+    box-shadow: 0px 0px 3px #cccccc;
+}
+.Login-group input:focus {
+    box-shadow: 0px 0px 5px #cccccc;
+    transition: 0.5s;
+}
+.Login button {
+    display: block;
+    width: 70%;
+    margin: 20px  auto;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 0;
+    background-color: #eeeeee;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #555555;
+}

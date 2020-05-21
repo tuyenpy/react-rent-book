@@ -1,11 +1,87 @@
 .Header {
+    font-size: 12px;
+}
+.Header a {
+    text-decoration: none;
+    color: inherit;
+}
+.Header-banner img {
+    width: 100%;
+}
+
+.Header-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 5px 0px;
 }
 
+.account ul {
+    display: flex;
+    list-style-type: none;
+    align-items: flex-end;
+    font-size: 13px;
+}
 
-.Header a {
-    text-decoration: none;
+.account li {
+    margin-left: 5px;
+}
+
+.Header-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0px;
+}
+
+.logo img {
+    width: 250px;
+}
+
+.search {
+    padding: 5px;
+    border: 2px solid #F7941E;
+    border-radius: 5px;
+    flex-grow: 0.6;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.search input {
+    width: 100%;
+    border: 0;
     color: #555555;
+}
+.search img {
+    width: 20px;
+}
+.cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cart div {
+    position: relative;
+}
+
+.cart span {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 1px 5px;
+    background-color: #ff0000;
+    border-radius: 10px;
+    color: #ffffff;
+    font-weight: 600;
+}
+.cart p {
+    color: #F9B769;
+}
+.username {
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.username span {
+    text-decoration: underline;
 }
