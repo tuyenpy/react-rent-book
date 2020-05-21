@@ -21,13 +21,20 @@ const userURL = "https://rent-book-coderx.herokuapp.com/api/user/profile";
 const perPage = 12;
 
 const App = (props) => {
+  //retrive cookies from Cookies Provider
   let { cookies } = props;
+  //books downloaded from the API are saved here
   const [books, setBooks] = useState([]);
+  //retrieve user information when querying for cookies
   const [user, setUser] = useState({});
+
   const [page, setPage] = useState(0);
+
   const [cart, setCart] = useState(0);
+  //book page transfer function
   const onNumPage = (page) => setPage(page);
   
+  //pass values into the context
   const value = {
     onNumPage,
     cart,
@@ -39,13 +46,14 @@ const App = (props) => {
     user,
   }
 
+  //get all books
   useEffect(() => {
-    //get all books
     getData(bookURL)
       .then(res => setBooks(res.data))
       .catch(err => console.log(err));
   }, []);
-
+  
+  //get user information
   useEffect(() => {
     axios.get(userURL, {
       params: {userID: cookies.get('userID')}
