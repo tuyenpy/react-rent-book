@@ -5,6 +5,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import axios from 'axios';
+import { withCookies } from 'react-cookie';
 import './App.css';
 import AppContext from './Context/AppContext';
 
@@ -18,18 +19,21 @@ import Signup from './component/Signup/Signup';
 const bookURL = "https://rent-book-coderx.herokuapp.com/api/book";
 const perPage = 12;
 
-const App = () => {
+const App = (props) => {
+  let { cookies } = props;
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(0);
   const [cart, setCart] = useState(0);
   const onNumPage = (page) => setPage(page);
+  
   const value = {
     onNumPage,
     cart,
     setCart, 
     books,
     perPage,
-    page
+    page,
+    cookies,
   }
 
   useEffect(() => {
@@ -71,4 +75,4 @@ const getData = async (url) => {
   return await axios.get(url)
 }
 
-export default App;
+export default withCookies(App);

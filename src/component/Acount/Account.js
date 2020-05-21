@@ -5,7 +5,7 @@ import cartLogo from './cart.svg';
 import AppContext from '../../Context/AppContext';
 
 const Account = (props) => {
-    let { cart } = useContext(AppContext);
+    let { cart, cookies } = useContext(AppContext);
     return <div className="Account">
         <ul>
             <li>
@@ -13,12 +13,17 @@ const Account = (props) => {
                     <img src={cartLogo} alt='cart' /><span>{cart}</span>
                 </Link>
             </li>
-            <li>
-                <Link to='/login'>Login</Link>
-            </li>
-            <li>
-                <Link to='/signup'>Signup</Link>
-            </li>
+            {
+                !cookies.get('userID') &&
+                <>
+                    <li>
+                        <Link to='/login'>Login</Link>
+                    </li>
+                    <li>
+                        <Link to='/signup'>Signup</Link>
+                    </li>
+                </>
+            }
         </ul>
     </div>
 }
