@@ -5,6 +5,10 @@
 
 #filter {
     font-size: 15px;
-    width: 100px;
-    padding: 8px 0px;
+    width: 60px;
+    padding: 5px 0px;
+    border: 1px solid #F9B769;
+    appearance:none;
+    border-radius: 5px;
+    text-align: center;
 }

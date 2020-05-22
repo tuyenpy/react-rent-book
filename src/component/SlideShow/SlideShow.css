@@ -1,9 +1,35 @@
 .SlideShow {
-    flex-basis: 100px;
-    flex-grow: 3;
     margin-left: 20px;
+    position: relative;
 }
 
-.SlideShow img {
+.SlideShow .slide {
     width: 100%;
+}
+
+.SlideShow .prev {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    transform: translate(0, -50%);
+    opacity: 0.5;
+}
+.SlideShow .next {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    transform: translate(-100%, -50%);
+    opacity: 0.5;
+}
+
+.SlideShow .prev:hover, .SlideShow .next:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 800px) {
+    .SlideShow {
+        width: 100%;
+        margin: auto;
+    }
 }

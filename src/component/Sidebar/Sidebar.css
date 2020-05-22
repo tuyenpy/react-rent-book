@@ -1,19 +1,23 @@
 .Sidebar {
-    flex-basis: 100px;
-    flex-grow: 1;
     text-transform: capitalize;
     font-size: 15px;
+    width: 25%;
 }
 .Sidebar img {
     width: 15px;
     opacity: 0.8;
+}
+.Sidebar ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
 }
 
 .Sidebar li {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
-    padding: 7px 0px;
 }
 
 .Sidebar > p {
@@ -24,4 +28,10 @@
     font-weight: 600;
     padding: 10px 5px;
     text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    .Sidebar {
+        width: 100%;
+    }
 }

@@ -1,4 +1,4 @@
-h1, h2, h3, h4, h5, h6, p, ul, li {
+h1, h2, h3, h4, h5, h6, p, ul, li, select, option {
   margin: 0;
   padding: 0;
 }
@@ -17,4 +17,10 @@ h1 {
 .Main {
   display: flex;
   margin-top: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .Main {
+    display: block;
+  }
 }
