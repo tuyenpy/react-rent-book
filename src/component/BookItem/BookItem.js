@@ -11,13 +11,13 @@ const BookItem = (props) => {
         </div>
         <div className="BookItem-body">
             <div className="title">
-                <p>{title}</p>
+                <h3>{title}</h3>
             </div>
             <div className="description">
-                <p>{description}}</p>
+                <p>{description}</p>
             </div>
             <div className="author">
-                <p>{author}}</p>
+                <p>{author}</p>
             </div>
             <div className="price">
                 <p>{price}</p>

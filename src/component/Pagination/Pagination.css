@@ -1,3 +1,15 @@
 .Pagination {
     padding: 12px 0px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.Pagination button {
+    padding: 4px 8px;
+    border: 1px solid #F9B769;
+    background-color: #ffffff;
+    color: #555555;
+    margin: 0px 5px;
+    border-radius: 5px;
 }

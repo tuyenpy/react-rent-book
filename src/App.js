@@ -21,7 +21,7 @@ import SlideShow from './component/SlideShow/SlideShow';
 
 const bookURL = "https://rent-book-coderx.herokuapp.com/api/book";
 const userURL = "https://rent-book-coderx.herokuapp.com/api/user/profile";
-const perPage = 12;
+const perPage = 10;
 
 const App = (props) => {
   //retrive cookies from Cookies Provider
@@ -34,8 +34,20 @@ const App = (props) => {
   const [page, setPage] = useState(0);
 
   const [cart, setCart] = useState(0);
+
   //book page transfer function
-  const onNumPage = (page) => setPage(page);
+  const onNumPage = (page, numPage) => {
+    console.log(page, typeof page, numPage);
+    if (page < 0) {
+      setPage(numPage);
+      return;
+    }
+    if (page === numPage) {
+      setPage(0);
+      return;
+    }
+    setPage(page);
+  };
   
   //pass values into the context
   const value = {
@@ -52,7 +64,9 @@ const App = (props) => {
   //get all books
   useEffect(() => {
     getData(bookURL)
-      .then(res => setBooks(res.data))
+      .then(res => {
+        setBooks(res.data);
+      })
       .catch(err => console.log(err));
   }, []);
   

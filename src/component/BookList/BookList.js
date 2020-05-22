@@ -9,6 +9,7 @@ import Pagination from '../Pagination/Pagination';
 
 const BookList = (props) => {
     let { books, perPage, page } = useContext(AppContext);
+    //not defined state = [] -- truthy
     let [state, setState] = useState();
     const onChange = (e) => {
         // filter public books
@@ -30,18 +31,32 @@ const BookList = (props) => {
     let newBooks = state || books;
     //total pages
     let numPage = newBooks && Math.ceil(newBooks.length / perPage);
-
     return <>
-        <Filter onChange={onChange}/>
+        {
+            newBooks.length ? (
+                <Filter onChange={onChange} />
+
+            ) : (<></>)
+        }
         <div className="BookList">
             {
-                newBooks && newBooks.slice(page * perPage, (page + 1) * perPage)
-                    .map((book, index) => {
-                        return <BookItem {...book} key={index} />
-                    })
+                newBooks.length ? (
+                    newBooks.slice(page * perPage, (page + 1) * perPage)
+                        .map((book, index) => {
+                            return <BookItem {...book} key={index} />
+                        })
+
+                ) : (<></>)
             }
         </div>
-        <Pagination numPage={ numPage }/>
+        {
+            newBooks.length ? (
+
+                <Pagination numPage={numPage} />
+            ) : (
+                    <></>
+                )
+        }
     </>
 }
 
